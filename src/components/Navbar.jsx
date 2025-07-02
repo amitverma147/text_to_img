@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import { useContext } from "react";
 import { assets } from "../assets/assets";
 import { Link, useNavigate } from "react-router-dom";
+import { AppContext } from "../context/AppContext";
+
 const Navbar = () => {
-  const [user, setUser] = useState(true);
   const navigate = useNavigate();
+  const { user } = useContext(AppContext);
+
   return (
     <div className="flex justify-between items-center py-4">
       <Link to="/">
@@ -13,7 +16,7 @@ const Navbar = () => {
       <div>
         {user ? (
           <div className="flex items-center text-center gap-2 sm:gap-3">
-            <button className="flex items-center gap-2  bg-blue-100 px-4 sm:px-6 py-1.5 sm:py-3 rounded-full hover:scale-105 transition-all duration-700">
+            <button onClick={()=>navigate('/buycredit')} className="flex items-center gap-2  bg-blue-100 px-4 sm:px-6 py-1.5 sm:py-3 rounded-full hover:scale-105 transition-all duration-700">
               <img src={assets.credit_star} alt="credit" className="w-5" />
               <p className="text-xs sm:text-sm font-medium text-gray-600 ">
                 Credit Left : 50
@@ -27,7 +30,7 @@ const Navbar = () => {
                 alt="userprofile"
               />
               <div className="absolute hidden group-hover:block top-0 right-0 z-10 text-black rounded pt-12">
-                <ul className="list-none m-0 p-2 bg-white rounded-md border text-sm">
+                <ul className="list-none m-0 p-2 bg-white rounded-md border border-white text-sm">
                   <li className="py-1 px-2 cursor-pointer pr-10">Logout</li>
                 </ul>
               </div>
