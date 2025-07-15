@@ -17,12 +17,9 @@ const AppContextProvider = (props) => {
   const loadCreditData = async () => {
     setToken(localStorage.getItem("token"));
     try {
-      const { data } = await axios.get(
-        "http://localhost:3000/api/user/credits",
-        {
-          headers: { token },
-        }
-      );
+      const { data } = await axios.get(backendUrl + "/api/user/credits", {
+        headers: { token },
+      });
 
       if (data.success) {
         setCredit(data.credits);
